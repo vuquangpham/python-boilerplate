@@ -1,3 +1,13 @@
+# Ruff Configuration - Enhanced for PEP-8 Compliance and Pythonic Style
+# 
+# This configuration provides comprehensive code quality enforcement including:
+# - Complete PEP-8 compliance
+# - Modern Python syntax recommendations  
+# - Import organization and conventions
+# - Bug prevention and security scanning
+# - Documentation standards
+# - Code simplification suggestions
+
 # Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",
@@ -28,7 +38,6 @@ exclude = [
     "venv",
 ]
 
-
 # Same as Black.
 line-length = 88
 indent-width = 4
@@ -37,11 +46,191 @@ indent-width = 4
 target-version = "py313"
 
 [lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`) codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
-select = ["E4", "E7", "E9", "F"]
-ignore = []
+# Enhanced rule selection for comprehensive code quality
+select = [
+    # === PEP-8 COMPLIANCE ===
+    "E",    # pycodestyle errors - enforces PEP-8 style guide
+            # E101-E125: Indentation errors (spaces vs tabs, incorrect indentation)
+            # E201-E206: Whitespace errors (extra spaces around brackets, commas)  
+            # E211-E231: Whitespace around operators and after commas
+            # E301-E306: Expected blank lines between classes/functions
+            # E401-E402: Import statement formatting
+            # E501-E506: Line length and line break issues
+            # E701-E743: Multiple statements on one line, naming conventions
+    
+    "W",    # pycodestyle warnings - additional style recommendations
+            # W191: Indentation contains tabs
+            # W291-W293: Trailing whitespace
+            # W391: Blank line at end of file
+            # W503-W504: Line break before/after binary operator
+            # W601-W606: Deprecated Python syntax (has_key(), etc.)
+    
+    # === CORE CODE ANALYSIS ===
+    "F",    # Pyflakes - detects various Python syntax errors and undefined names
+            # F401: Module imported but unused
+            # F402: Import module from line shadowed by loop variable
+            # F403: 'from module import *' used; unable to detect undefined names
+            # F404: Future import(s) after other statements
+            # F405: Name may be undefined, or defined from star imports
+            # F811: Redefinition of unused name
+            # F821: Undefined name
+            # F822: Undefined name in __all__
+            # F823: Local variable referenced before assignment
+            # F831: Duplicate argument name
+            # F901: 'raise NotImplemented' should be 'raise NotImplementedError'
+    
+    "C4",   # flake8-comprehensions - suggests better list/dict/set comprehensions
+            # C400-C416: Unnecessary list/dict/set comprehensions that can be simplified
+    
+    # === IMPORT ORGANIZATION ===
+    "I",    # isort - import sorting and organization
+            # I001: Import block is unsorted or contains duplicate imports
+            # I002: Missing required import (from __future__)
+            # Automatically organizes imports into: stdlib, third-party, local
+    
+    "ICN",  # flake8-import-conventions - enforces common import naming conventions
+            # ICN001: Import should be renamed (e.g., pandas as pd, numpy as np)
+            # ICN002: Import is banned or discouraged
+            # ICN003: Import from is banned
+    
+    # === CODE QUALITY & BUG PREVENTION ===
+    "B",    # flake8-bugbear - catches common Python bugs and design problems
+            # B002: Python does not support unary prefix increment (++n)
+            # B003: Assigning to os.environ doesn't clear the environment
+            # B004: Using hasattr(x, '__call__') to test if x is callable
+            # B005: Using .strip() with multi-character strings is misleading
+            # B006: Do not use mutable data structures for argument defaults
+            # B007: Loop control variable not used within the loop body
+            # B008: Do not perform function calls in argument defaults
+            # B009-B010: getattr/setattr with string literals should use hasattr
+            # B011: Do not call assert False (python -O removes these)
+            # B012: break/continue/return inside finally blocks
+            # B013-B014: Redundant exception types in except clauses
+            # B015: Pointless comparison (comparing something to itself)
+            # B016: Cannot raise a literal, use Exception instead
+            # B017: assertRaises(Exception) is too broad
+            # B018: Found useless expression (statement has no effect)
+            # B019: Use of assert detected outside of tests
+            # B020-B022: Loop control and context manager issues
+            # B023: Function definition does not bind loop variable
+            # B024: Abstract base class without abstract methods
+            # B025: Duplicate exception types in except clause
+            # B026: Star-arg unpacking after keyword argument
+            # B027: Empty method without abstract decorator
+            # B901-B950: Opinionated warnings about Python idioms
+    
+    "A",    # flake8-builtins - prevents shadowing of Python builtins
+            # A001: Variable shadows Python builtin (like list, dict, str)
+            # A002: Argument shadows Python builtin  
+            # A003: Class attribute shadows Python builtin
+            # A004: Import shadows Python builtin
+            # A005: Module shadows Python builtin
+    
+    "COM",  # flake8-commas - enforces trailing commas for better diffs
+            # COM812: Missing trailing comma in Python 3.6+
+            # COM818: Trailing comma on bare tuple prohibited
+            # COM819: Trailing comma prohibited
+    
+    # === MODERN PYTHON & PYTHONIC STYLE ===
+    "UP",   # pyupgrade - suggests modern Python syntax improvements
+            # UP001-UP009: Upgrade f-strings, type annotations, dict/set literals
+            # UP010-UP019: Remove unnecessary future imports for your Python version
+            # UP020-UP029: Replace deprecated methods (typing.Union → |, etc.)
+            # UP030-UP039: Use implicit optional, isinstance with tuples
+            # UP040-UP049: Remove unnecessary parentheses, use newer syntax
+    
+    "SIM",  # flake8-simplify - suggests code simplifications
+            # SIM101: Duplicate isinstance calls can be combined
+            # SIM102: Use single if-statement instead of nested if-statements
+            # SIM103: Return condition directly
+            # SIM104-SIM118: Various boolean/conditional simplifications
+            # SIM201-SIM223: Loop and comprehension simplifications
+            # SIM300-SIM401: Dictionary and string operation simplifications
+    
+    "RET",  # flake8-return - improves return statement consistency
+            # RET501: Don't explicitly return None in function if it's the only return
+            # RET502: Don't implicitly return None in function with other returns
+            # RET503: Missing explicit return at end of function with other returns
+            # RET504: Unnecessary variable assignment before return statement
+            # RET505-RET508: Unnecessary else/elif after return patterns
+    
+    "ARG",  # flake8-unused-arguments - detects unused function arguments
+            # ARG001: Unused function argument
+            # ARG002: Unused method argument
+            # ARG003: Unused class method argument
+            # ARG004: Unused static method argument
+            # ARG005: Unused lambda argument
+    
+    "PTH",  # flake8-use-pathlib - prefers pathlib over os.path
+            # PTH100-PTH124: Replace os.path operations with pathlib equivalents
+            # Examples: os.path.exists() → Path.exists(), os.path.join() → Path / operator
+    
+    # === DOCUMENTATION ===
+    "D",    # pydocstyle - enforces docstring conventions
+            # D100-D107: Missing docstrings (modules, classes, methods, functions)
+            # D200-D215: Docstring formatting (whitespace, quotes, blank lines)
+            # D300-D418: Docstring content rules (periods, capitalization, parameters)
+            # Supports Google, NumPy, and PEP257 docstring conventions
+    
+    # === SECURITY ===
+    "S",    # flake8-bandit - security vulnerability scanner
+            # S101: Use of assert (can be optimized away in production)
+            # S102: exec() usage (code injection risk)
+            # S103: Bad file permissions (security risk)
+            # S104-S108: Hardcoded password/key patterns
+            # S110: try/except with pass (may hide security errors)
+            # S112: try/except with continue (may hide security errors)
+            # S201: Flask debug mode (security risk in production)
+            # S301-S324: Various injection vulnerabilities
+            # S401-S413: Cryptographic issues
+            # S501-S506: SSL/TLS configuration problems
+            # S601-S612: Shell injection vulnerabilities
+            # S701: Jinja2 autoescape disabled
+    
+    # === COMPLEXITY ===
+    "C90",  # McCabe complexity - detects overly complex functions
+            # Measures cyclomatic complexity of functions
+            # Helps identify code that should be refactored
+    
+    # === PERFORMANCE & PYTHONIC PATTERNS ===  
+    "PERF", # Perflint - performance anti-patterns and Pythonic improvements
+            # PERF101: Do not cast an iterable to list before iterating over it
+            # PERF102: When using only the values of a dict use .values()
+            # PERF401: Use list comprehension instead of for-loop with .append()
+            # PERF402: Use list/set comprehension instead of for-loop
+            # PERF403: Use dict comprehension instead of for-loop with dict.update()
+    
+    # === RUFF-SPECIFIC ===
+    "RUF",  # Ruff-specific rules - additional Python best practices
+            # RUF001-RUF003: Ambiguous unicode characters
+            # RUF005: Collection literal concatenation
+            # RUF006: Store reference to asyncio.create_task return value
+            # RUF007: Prefer itertools.pairwise() over zip() for successive pairs
+            # RUF008-RUF013: Various Python idiom improvements
+            # RUF100: Unused # noqa directive
+]
+
+# Rules to ignore - these are either too strict for general use or conflict with formatters
+ignore = [
+    # === DOCSTRING RULES - Too strict for initial adoption ===
+    "D100",  # Missing docstring in public module
+    "D104",  # Missing docstring in public package  
+    "D107",  # Missing docstring in __init__
+    "D203",  # 1 blank line required before class docstring (conflicts with D211)
+    "D213",  # Multi-line docstring summary should start at the second line (conflicts with D212)
+    
+    # === SECURITY RULES - May be too strict for general development ===
+    "S101",  # Use of assert (common in tests and development)
+    "S603",  # subprocess call: check for execution of untrusted input
+    "S607",  # Starting a process with a partial executable path
+    
+    # === STYLE PREFERENCES - Conflicts with formatters ===
+    "COM812", # Trailing comma missing (conflicts with formatter)
+    "COM819", # Trailing comma prohibited (conflicts with formatter)
+    
+    # === RETURN STYLE - May conflict with existing code patterns ===
+    "RET504", # Unnecessary variable assignment before return (sometimes aids readability)
+]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
@@ -50,8 +239,48 @@ unfixable = []
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
+# === TOOL-SPECIFIC CONFIGURATION ===
+
+[lint.mccabe]
+# Maximum allowed complexity (default: 10)
+max-complexity = 10
+
+[lint.pydocstyle]
+# Use Google docstring convention
+convention = "google"
+
+[lint.isort]
+# Split imports onto separate lines
+force-single-line = false
+# Sort imports within sections
+force-sort-within-sections = true
+# Ensure imports are properly separated
+split-on-trailing-comma = true
+
+[lint.per-file-ignores]
+# Ignore certain rules for specific file types
+"tests/*" = [
+    "S101",  # Allow assert in tests
+    "D100",  # Don't require module docstrings in tests
+    "D101",  # Don't require class docstrings in tests  
+    "D102",  # Don't require method docstrings in tests
+    "D103",  # Don't require function docstrings in tests
+    "ARG001", # Allow unused arguments in test fixtures
+    "B018",  # Allow useless expressions in tests (for assertions)
+]
+"*.ipynb" = [
+    "D100",  # Don't require module docstrings in notebooks
+    "B018",  # Allow useless expressions in notebooks
+    "F401",  # Allow unused imports in notebooks
+    "E402",  # Allow imports not at top of file in notebooks
+]
+"__init__.py" = [
+    "D104",  # Don't require docstrings in __init__.py
+    "F401",  # Allow unused imports in __init__.py (re-exports)
+]
+
 [format]
-# Like Black, use double quotes for strings.
+# Like Black, use single quotes for strings (your preference)
 quote-style = "single"
 
 # Like Black, indent with spaces, rather than tabs.
@@ -65,14 +294,7 @@ line-ending = "auto"
 
 # Enable auto-formatting of code examples in docstrings. Markdown,
 # reStructuredText code/literal blocks and doctests are all supported.
-#
-# This is currently disabled by default, but it is planned for this
-# to be opt-out in the future.
-docstring-code-format = false
+docstring-code-format = true
 
-# Set the line length limit used when formatting code snippets in
-# docstrings.
-#
-# This only has an effect when the `docstring-code-format` setting is
-# enabled.
+# Set the line length limit used when formatting code snippets in docstrings.
 docstring-code-line-length = "dynamic"
