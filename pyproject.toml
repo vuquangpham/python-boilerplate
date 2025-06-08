@@ -8,7 +8,7 @@ dependencies = []
 
 # Scripts
 [project.scripts]
-run = "app.main:main"
+start = "app.main:main"
 dev = "app.dev:main"
 
 [build-system]
