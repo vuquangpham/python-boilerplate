@@ -76,18 +76,6 @@ This will:
 
 The development server uses `watchfiles` to monitor your source code and automatically restarts the application when you make changes.
 
-### Manual Development
-
-You can also run the application manually:
-
-```bash
-# Run the main application
-uv run python -m app.main
-
-# Run in development mode
-uv run python -m app.dev
-```
-
 ## 🔧 Development Tools
 
 This project uses modern Python development tools for code quality and consistency:
