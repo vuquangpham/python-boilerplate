@@ -1,6 +1,6 @@
 def main():
-    print("Hello from python-project!")
+    print('Hello from python-project!')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
