@@ -1,11 +1,15 @@
 {
   "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
 
   "notebook.formatOnSave.enabled": true,
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
   "[jupyter-notebook]": {
     "editor.defaultFormatter": "charliermarsh.ruff",

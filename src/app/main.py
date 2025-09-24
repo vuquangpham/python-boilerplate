@@ -1,4 +1,4 @@
-def main():
+def main() -> None:
     """Entry point for the python-project application."""
     print('Hello from python-project!')
 

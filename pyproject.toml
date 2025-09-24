@@ -26,3 +26,14 @@ dev = [
     "ruff>=0.11.13",
     "watchfiles>=1.0.5",
 ]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+disallow_untyped_defs = true
+disallow_any_generics = true
+# If 3rd-party libs are missing stubs, start with this and tighten later:
+ignore_missing_imports = true
