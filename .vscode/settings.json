@@ -5,11 +5,12 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
+  "notebook.formatOnSave.enabled": true,
+  "notebook.defaultFormatter": "charliermarsh.ruff",
   "notebook.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
-  "notebook.formatOnSave.enabled": true,
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
