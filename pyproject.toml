@@ -4,19 +4,24 @@ version = "0.1.0"
 description = "Example project for Python"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+]
 
 # Scripts
 [project.scripts]
-start = "app.main:main"
-dev = "app.dev:main"
+start = "main:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+# Identifies which directories contain your Python code that should be packaged
 [tool.hatch.build.targets.wheel]
-packages = ["src/app"]
+packages = ["src"]
+
+# Maps the src/ directory to the root of the package
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
 
 [dependency-groups]
 dev = [
@@ -35,5 +40,4 @@ warn_redundant_casts = true
 no_implicit_optional = true
 disallow_untyped_defs = true
 disallow_any_generics = true
-# If 3rd-party libs are missing stubs, start with this and tighten later:
 ignore_missing_imports = true
