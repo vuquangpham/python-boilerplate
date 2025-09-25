@@ -1,11 +1,17 @@
-def main() -> None:
-    """Entry point for the python-project application."""
-    print('Hello from python-project!')
+from utils.config import load_config
+from utils.logging import get_logger, setup_logging
 
-    # Pythonic way: use list comprehension or built-in function
-    x = list(range(10))  # Most Pythonic - direct conversion
-    # Alternative: x = [i for i in range(10)]  # List comprehension
-    print(f'Generated list: {x}')
+
+def main() -> None:
+    """Main function."""
+    # Load configuration
+    config = load_config()
+
+    # Set up logging
+    setup_logging(config.logging)
+
+    logger = get_logger()
+    logger.info('Starting python-project application')
 
 
 if __name__ == '__main__':

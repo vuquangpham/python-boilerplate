@@ -1,32 +1,45 @@
 from pathlib import Path
 import sys
-from typing import Any
 
 import yaml
 
-root_path = Path.joinpath(Path.cwd(), 'src')
-config_path = Path.joinpath(root_path, 'configs/settings.yaml')
+from schemas.common import Common
+
+
+def find_project_root() -> Path:
+    """Find project root by looking for pyproject.toml."""
+    current = Path(__file__).parent
+    while current != current.parent:
+        if (current / 'pyproject.toml').exists():
+            return current
+        current = current.parent
+    raise RuntimeError('Could not find project root (no pyproject.toml found)')
+
+
+# Use project root for all path calculations
+PROJECT_ROOT = find_project_root()
+root_path = PROJECT_ROOT / 'src'
+config_path = root_path / 'config' / 'settings.yaml'
 
 
 def load_config(
     config_path: Path = config_path,
-) -> dict[str, Any]:
+) -> Common:
     """Load configuration from YAML file.
 
     Args:
         config_path: Path to the configuration file
 
     Returns:
-        Dictionary containing configuration settings
+        Common configuration object
 
     Raises:
         SystemExit: If configuration file is not found or invalid
     """
     try:
-        print(config_path, Path.cwd(), Path(__file__))
-        with Path.open(config_path) as config_file:
+        with config_path.open() as config_file:
             config = yaml.safe_load(config_file)
-            return config if config is not None else {}
+            return Common(**config)
 
     except FileNotFoundError:
         print(f'Error: Configuration file not found at {config_path}')
