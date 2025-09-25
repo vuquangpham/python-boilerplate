@@ -5,6 +5,8 @@ description = "Example project for Python"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "pydantic>=2.11.9",
+    "types-pyyaml>=6.0.12.20250915",
 ]
 
 # Scripts
