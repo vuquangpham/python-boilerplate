@@ -1,29 +1,38 @@
-# Python Project
+# Python Boilerplate
 
-A modern Python project template with professional development tooling and workflow.
+A modern Python project boilerplate with professional development tooling and workflow.
 
 ## ✨ Features
 
-- **Modern Python Stack**: Built with Python 3.13+ and modern package management
+- **Modern Python Stack**: Built with Python 3.13+ and UV package manager
 - **Code Quality Tools**: Integrated ruff (formatting/linting), mypy (type checking), and pre-commit hooks
-- **Developer Experience**: One-command setup and hot-reload development server
+- **Configuration Management**: YAML-based configuration with Pydantic validation
+- **Developer Experience**: One-command setup and hot-reload development server via Makefile
 - **Professional Workflow**: Structured project layout following Python best practices
 
 ## 📁 Project Structure
 
 ```
-python-project/
+python-boilerplate/
 ├── src/                    # Source code
-│   ├── app/               # Main application package
-│   └── basic_usage.ipynb  # Jupyter notebook examples
-├── scripts/               # Development scripts
-│   ├── setup.sh          # Project setup script
-│   └── dev.sh            # Development server script
+│   ├── core/              # Core application modules
+│   ├── models/            # Data models
+│   ├── schemas/           # Pydantic schemas and data validation
+│   │   └── common.py      # Common configuration schemas
+│   ├── utils/             # Utility functions
+│   │   ├── config.py      # Configuration loading utilities
+│   │   └── logging.py     # Logging setup utilities
+│   ├── config/            # Configuration files
+│   │   └── settings.yaml  # Application settings
+│   └── main.py           # Main application entry point
+├── notebooks/             # Jupyter notebook examples
+│   └── basic_usage.ipynb  # Basic usage examples
 ├── tests/                 # Test files
-├── dist/                 # Distribution files
-├── pyproject.toml        # Project configuration
-├── ruff.toml            # Ruff configuration
-├── .pre-commit-config.yaml # Pre-commit hooks
+├── logs/                  # Application logs (created at runtime)
+├── Makefile              # Development automation
+├── pyproject.toml        # Project configuration and dependencies
+├── ruff.toml            # Ruff linting and formatting configuration
+├── .pre-commit-config.yaml # Pre-commit hooks configuration
 └── README.md            # This file
 ```
 
@@ -33,20 +42,21 @@ python-project/
 
 - Python 3.13 or higher
 - Git (for version control)
+- Make (for running Makefile commands)
 
 ### Setup
 
-Run the setup script to get everything configured:
+Run the setup command to get everything configured:
 
 ```bash
-./scripts/setup.sh
+make setup
 ```
 
-This script will:
+This command will:
 
 - 📦 Install `uv` package manager (if not already installed)
 - ⬇️ Install all project dependencies
-- 🔧 Initialize git repository
+- 🔧 Initialize git repository (if not already initialized)
 - 🪝 Set up pre-commit hooks
 
 ### Verify Installation
@@ -64,7 +74,7 @@ uv run start
 Start the development server with hot-reload:
 
 ```bash
-./scripts/dev.sh
+make dev
 ```
 
 This will:
@@ -101,20 +111,25 @@ This project uses modern Python development tools for code quality and consisten
 
 These tools work together to maintain high code quality and consistency across the project.
 
-## 📋 Project Scripts
+## 📋 Available Make Commands
 
-### `scripts/setup.sh`
+### `make setup`
 
 - Sets up the entire development environment
-- Installs dependencies and tools
+- Installs UV package manager and dependencies
 - Configures git and pre-commit hooks
 - **When to use**: First time setup or when adding new developers
 
-### `scripts/dev.sh`
+### `make dev`
 
 - Starts the development server with hot-reload
 - Monitors file changes and auto-restarts
 - **When to use**: Daily development work
+
+### `make help`
+
+- Shows all available make targets
+- **When to use**: To see what commands are available
 
 ## 🎯 Getting Started with Development
 
@@ -122,14 +137,14 @@ These tools work together to maintain high code quality and consistency across t
 
    ```bash
    git clone <repository-url>
-   cd python-project
-   ./scripts/setup.sh
+   cd python-boilerplate
+   make setup
    ```
 
 2. **Start Development**:
 
    ```bash
-   ./scripts/dev.sh
+   make dev
    ```
 
 3. **Make Changes**: Edit files in `src/` and see changes automatically reflected
@@ -139,6 +154,16 @@ These tools work together to maintain high code quality and consistency across t
    uv run ruff check src/
    uv run mypy src/
    ```
+
+## 🔧 Configuration
+
+The project uses a YAML-based configuration system with Pydantic validation:
+
+- **Configuration File**: `src/config/settings.yaml`
+- **Schema Definition**: `src/schemas/common.py`
+- **Loading Utilities**: `src/utils/config.py`
+
+The configuration system automatically finds the project root and loads settings with proper type validation.
 
 ## 🤝 Contributing
 
@@ -151,7 +176,9 @@ This project follows modern Python development practices:
 
 ## 📚 Additional Resources
 
-- **PyProject.toml**: Modern Python project configuration
+- **PyProject.toml**: Modern Python project configuration with UV dependency management
 - **UV**: Fast Python package manager and project manager
-- **Ruff**: The fastest Python linter and formatter
-- **MyPy**: Optional static typing for Python
+- **Ruff**: The fastest Python linter and formatter with comprehensive rule set
+- **MyPy**: Static type checking for Python with strict configuration
+- **Pydantic**: Data validation and settings management using Python type annotations
+- **Pre-commit**: Git hook framework for code quality automation
