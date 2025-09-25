@@ -5,15 +5,14 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
-
+  "notebook.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
   "notebook.formatOnSave.enabled": true,
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
   },
-  "[jupyter-notebook]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnSave": true
-  },
-  "ruff.configuration": "./ruff.toml"
+  "ruff.configuration": "./ruff.toml",
 }
