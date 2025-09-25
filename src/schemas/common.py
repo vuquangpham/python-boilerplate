@@ -3,7 +3,7 @@ from pathlib import Path
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from utils.config import PROJECT_ROOT
+from utils.paths import PROJECT_ROOT
 
 
 @dataclass
