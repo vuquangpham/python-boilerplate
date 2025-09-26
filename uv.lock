@@ -1182,6 +1182,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
+    { name = "pyyaml" },
     { name = "types-pyyaml" },
 ]
 
@@ -1197,6 +1198,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "pydantic", specifier = ">=2.11.9" },
+    { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20250915" },
 ]
 
