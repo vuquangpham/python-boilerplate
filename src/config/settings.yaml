@@ -1,2 +1,4 @@
-example_config:
-  example_key: example_value
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  output: "logs"
