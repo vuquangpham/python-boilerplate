@@ -164,6 +164,7 @@ venv/
 .envrc
 _version.py
 .cursor
+.env.local*
 
 # Ruff
 .ruff_cache/

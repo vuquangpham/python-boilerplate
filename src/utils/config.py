@@ -4,10 +4,9 @@ import sys
 import yaml
 
 from schemas.common import Common
-from utils.paths import PROJECT_ROOT
+from utils.paths import SOURCE_ROOT
 
-root_path = PROJECT_ROOT / 'src'
-config_path = root_path / 'config' / 'settings.yaml'
+config_path = SOURCE_ROOT / 'config' / 'settings.yaml'
 
 
 def load_config(

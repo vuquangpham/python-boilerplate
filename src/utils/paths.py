@@ -15,3 +15,5 @@ def find_project_root() -> Path:
 
 # Use project root for all path calculations
 PROJECT_ROOT = find_project_root()
+ENV_ROOT = PROJECT_ROOT / '.env.local'
+SOURCE_ROOT = PROJECT_ROOT / 'src'
