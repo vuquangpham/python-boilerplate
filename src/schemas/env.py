@@ -11,7 +11,7 @@ load_dotenv(dotenv_path=ENV_ROOT)
 class Env(BaseModel):
     """Environment variables."""
 
-    EXAMPLE_KEY: str = Field(default=os.getenv('EXAMPLE_KEY', ''))
+    EXAMPLE_KEY: str = Field(...)
 
 
-env = Env()
+env = Env(**os.environ)
