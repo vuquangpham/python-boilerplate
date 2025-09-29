@@ -7,7 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "dotenv>=0.9.9",
     "email-validator>=2.3.0",
-    "pydantic>=2.11.9",
+    "pydantic[mypy]>=2.11.9",
     "pyyaml>=6.0.2",
     "types-pyyaml>=6.0.12.20250915",
 ]
