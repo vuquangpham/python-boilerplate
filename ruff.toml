@@ -79,6 +79,18 @@ select = [
             # F831: Duplicate argument name
             # F901: 'raise NotImplemented' should be 'raise NotImplementedError'
     
+    # === TYPE ANNOTATIONS ===
+    "ANN",  # flake8-annotations - enforces type annotations for consistency with mypy
+            # ANN001: Missing type annotation for function argument
+            # ANN002: Missing type annotation for *args
+            # ANN003: Missing type annotation for **kwargs
+            # ANN201: Missing return type annotation for public function
+            # ANN202: Missing return type annotation for private function
+            # ANN204: Missing return type annotation for special method
+            # ANN205: Missing return type annotation for staticmethod
+            # ANN206: Missing return type annotation for classmethod
+            # ANN401: Dynamically typed expressions (Any) are disallowed
+    
     "C4",   # flake8-comprehensions - suggests better list/dict/set comprehensions
             # C400-C416: Unnecessary list/dict/set comprehensions that can be simplified
     
