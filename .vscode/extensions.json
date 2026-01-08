@@ -6,6 +6,5 @@
     "ms-toolsai.jupyter",
     "ms-toolsai.jupyter-renderers",
     "ms-toolsai.jupyter-renderers",
-    "ms-python.mypy-type-checker",
   ]
 }
