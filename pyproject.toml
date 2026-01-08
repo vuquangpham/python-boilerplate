@@ -5,9 +5,10 @@ description = "Example project for Python"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "aiohttp>=3.13.3",
     "dotenv>=0.9.9",
     "email-validator>=2.3.0",
-    "pydantic[mypy]>=2.12.0",
+    "pydantic>=2.12.5",
     "pyyaml>=6.0.2",
     "types-pyyaml>=6.0.12.20250915",
 ]
@@ -31,8 +32,30 @@ packages = ["src"]
 [dependency-groups]
 dev = [
     "jupyter>=1.1.1",
-    "mypy>=1.16.0",
+    "pyright>=1.1.400",
     "pre-commit>=4.2.0",
     "ruff>=0.11.13",
     "watchfiles>=1.0.5",
 ]
+
+[tool.pyright]
+# Strict type checking mode (equivalent to mypy strict settings)
+typeCheckingMode = "strict"
+
+# Include src directory
+include = ["src"]
+
+# Python version
+pythonVersion = "3.13"
+
+# Set src as the root for imports (fixes internal module "missing stubs" errors)
+pythonPlatform = "Darwin"
+extraPaths = ["src"]
+
+# Equivalent to mypy's ignore_missing_imports (for external packages without stubs)
+reportMissingTypeStubs = false
+reportMissingModuleSource = false
+
+# Additional strict settings 
+reportUnnecessaryTypeIgnoreComment = true
+reportMissingTypeArgument = true
