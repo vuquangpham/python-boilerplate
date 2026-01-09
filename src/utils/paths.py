@@ -4,13 +4,13 @@ from pathlib import Path
 
 
 def find_project_root() -> Path:
-    """Find project root by looking for pyproject.toml."""
-    current = Path(__file__).parent
-    while current != current.parent:
-        if (current / 'pyproject.toml').exists():
-            return current
-        current = current.parent
-    raise RuntimeError('Could not find project root (no pyproject.toml found)')
+  """Find project root by looking for pyproject.toml."""
+  current = Path(__file__).parent
+  while current != current.parent:
+    if (current / 'pyproject.toml').exists():
+      return current
+    current = current.parent
+  raise RuntimeError('Could not find project root (no pyproject.toml found)')
 
 
 # Use project root for all path calculations
